@@ -70,7 +70,20 @@ MetaMask is the wallet that signs the blockchain transactions.
 
 ### Step 4: Add the Celo Sepolia test network
 
-You can skip this step: the dashboard has a **Switch to Celo Sepolia** button that offers to add it. To add it manually:
+MetaMask does not include Celo Sepolia by default. Add it with **Option A** (Chainlist, quickest) or **Option B** (manual). You can also skip this step: if MetaMask is on the wrong network, the dashboard shows a **Switch to Celo Sepolia** button that offers to add it for you.
+
+#### Option A: Add it from Chainlist
+
+1. Open **https://chainlist.org** in Chrome.
+2. Turn on **Include Testnets**, then search for `Celo Sepolia` or the chain ID `11142220`.
+3. Click **Connect Wallet** at the top and approve the connection in MetaMask.
+4. On the Celo Sepolia result, check that the chain ID is `11142220` and the currency is `CELO`, then click **Add to MetaMask**.
+5. In the MetaMask pop-up, approve **Add network**, then approve **Switch network**.
+6. Confirm MetaMask now shows **Celo Sepolia Testnet** at the top.
+
+If Chainlist does not show it or the button does not work, use Option B.
+
+#### Option B: Add it manually
 
 1. In MetaMask, click the network name at the top, then **Add a custom network**.
 2. Enter these values and save:
