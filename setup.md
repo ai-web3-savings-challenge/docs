@@ -128,7 +128,7 @@ If you have other wallet extensions in Chrome (for example Coinbase Wallet), the
 
 ### Step 6: Get free testnet CELO
 
-Transactions need a little testnet CELO to pay for gas. It has no real value.
+Transactions need CELO testnet faucet to pay for gas. It has no real value.
 
 1. Open one of these faucets:
    - Celo faucet: https://faucet.celo.org/celo-sepolia
