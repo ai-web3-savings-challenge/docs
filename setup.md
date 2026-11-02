@@ -9,8 +9,8 @@ Everything uses synthetic data and a test network. No real money moves and no re
 You only clone **two repositories**: the **frontend** and the **backend**. Everything else (the mock API, the smart contract and the documentation) is either hosted online or already deployed, so there is nothing else to download.
 
 ```bash
-git clone <frontend-repository-url>
-git clone <backend-repository-url>
+git clone https://github.com/ai-web3-savings-challenge/frontend.git
+git clone https://github.com/ai-web3-savings-challenge/backend.git
 ```
 
 Keep the two folders side by side, for example inside one `ai-web3-savings-challenge` folder.
@@ -56,7 +56,7 @@ Install or confirm these before you start.
 | **Node.js 18 or higher** (20 recommended) | Run `node -v`. If it is missing or below 18, install the LTS version from https://nodejs.org |
 | **npm** | Comes with Node.js. Check with `npm -v` |
 | **MetaMask** browser extension | See section 2 |
-| **Testnet CELO** in your wallet | See section 2, step 6 |
+| **CELO Testnet Faucet** in your wallet | See section 2, step 6 |
 | **Git** | Run `git --version`. If it is missing, install it from https://git-scm.com. Needed to clone the frontend and backend |
 | **The frontend and backend repositories** | Cloned side by side (see "What you will clone") |
 | **A code editor** (optional) | For example VS Code, to edit `.env` files |
@@ -126,9 +126,9 @@ If Chainlist does not show it or the button does not work, use Option B.
 
 If you have other wallet extensions in Chrome (for example Coinbase Wallet), they can conflict with MetaMask. Disable the others while testing: `chrome://extensions`.
 
-### Step 6: Get free testnet CELO
+### Step 6: Get free CELO testnet faucet
 
-Transactions need a little testnet CELO to pay for gas. It has no real value.
+Transactions need a little CELO testnet faucet to pay for gas. It has no real value.
 
 1. Open one of these faucets:
    - Celo faucet: https://faucet.celo.org/celo-sepolia
@@ -136,7 +136,7 @@ Transactions need a little testnet CELO to pay for gas. It has no real value.
 2. Paste your wallet address (copied in step 3) and request funds. If one faucet is busy or has a limit, try the other.
 3. Check that the balance appears in MetaMask while on the Celo Sepolia network. It can take a minute.
 
-Without testnet CELO you can still view the whole dashboard, but you cannot create goals or record contributions.
+Without CELO testnet faucet you can still view the whole dashboard, but you cannot create goals or record contributions.
 
 ---
 
@@ -181,7 +181,7 @@ Start the backend **before** you use the AI insights in the frontend.
 | Setting | What to put |
 |---|---|
 | `MISTRAL_API_KEY` | The key provided by the team |
-| `WALLET_ADDRESS` | Your own MetaMask address (section 2, step 3). The full address, `0x` plus 40 characters |
+| `WALLET_ADDRESS` | Your own CELO Sepolia address (section 2, step 3). The full address, `0x` plus 40 characters |
 | `FRONTEND_URL` | Where the frontend runs. Keep `http://localhost:5173` unless the frontend uses another port |
 | The rest | Leave as shown. Each setting should appear only once |
 
@@ -300,7 +300,7 @@ Reminders: the blockchain figures are **demo records**, not real money, and crea
 | AI always returns the pre-written answer | Mistral key missing or wrong, `AI_MODE` is not `live`, or the request timed out. Check the backend terminal for the reason |
 | "No browser wallet found" | MetaMask is not installed or not enabled in Chrome, or you are in a Chrome profile without it |
 | **Wrong network** pill | MetaMask is on another network. Click **Switch to Celo Sepolia** |
-| "Not enough testnet CELO for gas" | Get free testnet CELO from a faucet (section 2, step 6) |
+| "Not enough CELO testnet faucet for gas" | Get free CELO testnet faucet from a faucet (section 2, step 6) |
 | "You rejected the request" | You cancelled in MetaMask, so nothing was sent. Try again |
 | Yellow notice "endpoints failed" | The mock API was unreachable or returned an unexpected shape. The notice names the endpoint. Open the browser console (F12) for details |
 | Goal shows as empty after switching accounts | Goals belong to one wallet address. A new account has no goal yet |
