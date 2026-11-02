@@ -4,6 +4,29 @@ This guide gets the **backend** and the **frontend** running on your computer, a
 
 Everything uses synthetic data and a test network. No real money moves and no real customer data is used.
 
+## What you will clone
+
+You only clone **two repositories**: the **frontend** and the **backend**. Everything else (the mock API, the smart contract and the documentation) is either hosted online or already deployed, so there is nothing else to download.
+
+```bash
+git clone <frontend-repository-url>
+git clone <backend-repository-url>
+```
+
+Keep the two folders side by side, for example inside one `ai-web3-savings-challenge` folder.
+
+The documentation lives in its own repository and is **not** part of what you clone. You can come back to it at any time for more information:
+
+| Document | What it covers |
+|---|---|
+| [setup.md](https://github.com/ai-web3-savings-challenge/docs/blob/main/setup.md) | This guide |
+| [api-reference.md](https://github.com/ai-web3-savings-challenge/docs/blob/main/api-reference.md) | Mock API, AI endpoint and smart contract reference |
+| [mentor-guide.md](https://github.com/ai-web3-savings-challenge/docs/blob/main/mentor-guide.md) | Checklist, demo script and common problems for mentors |
+
+Docs repository: https://github.com/ai-web3-savings-challenge/docs
+
+---
+
 ## What each part does
 
 | Part | What it does |
@@ -34,11 +57,12 @@ Install or confirm these before you start.
 | **npm** | Comes with Node.js. Check with `npm -v` |
 | **MetaMask** browser extension | See section 2 |
 | **Testnet CELO** in your wallet | See section 2, step 6 |
-| **The project files** | A folder containing `backend/` and `frontend/` side by side |
+| **Git** | Run `git --version`. If it is missing, install it from https://git-scm.com. Needed to clone the frontend and backend |
+| **The frontend and backend repositories** | Cloned side by side (see "What you will clone") |
 | **A code editor** (optional) | For example VS Code, to edit `.env` files |
 | **Postman or Apidog** (optional) | To test the backend directly |
 
-The API keys for the backend (such as the Mistral key) are provided separately by the team. Never post them in public chats or commit them to git.
+The API keys for the backend (such as the Mistral key) would be provided separately by the team. Never post them in public chats or commit them to git.
 
 ---
 
@@ -118,67 +142,36 @@ Without testnet CELO you can still view the whole dashboard, but you cannot crea
 
 ## 3. Backend setup
 
-The backend must be running **before** you use the AI insights in the frontend.
-
-### What you edit, and what you must not
-
-**The one file you edit:** `src/handlers/eventHandlers.js`
-
-It has two functions, `onGoalCreated` and `onContributionRecorded`. Replace the `console.log` inside them with your own logic. This is the only file you need to change.
-
-**Files you must NOT edit.** Everything else is shared plumbing. Changing it can break the AI endpoint, the event listener, or the checks that keep AI answers safe.
-
-| File | What it does |
-|---|---|
-| `src/routes/ai.js` | Defines the `/ai/analyse-savings` route |
-| `src/controllers/aiController.js` | Handles each AI request and picks AI or fallback |
-| `src/services/aiService.js` | Calls Mistral, with a timeout and one retry |
-| `src/services/aiPrompt.js` | The instructions given to Mistral |
-| `src/services/fallbackService.js` | Builds the pre-written response when the AI is unavailable |
-| `src/services/eventListener.js` | Reads the contract and prepares the event values |
-| `src/utils/normalizeInput.js` | Cleans the request (text numbers, defaults) |
-| `src/utils/validateInput.js` | Checks the request and explains what is wrong |
-| `src/utils/buildSummary.js` | Calculates the facts (shortfall, required monthly, trend, ...) |
-| `src/utils/validateAiResponse.js` | Checks the AI reply before it reaches you |
-| `src/utils/buildMeta.js` | Builds the `meta` block (source, confidence, disclaimer) |
-| `src/config/analysisTypes.js` | The allowed observation and action types |
-| `src/data/fallbackTemplates.json` | The wording of the pre-written response |
-
-`docs/sample-request.json` is the sample request, used for testing.
+Start the backend **before** you use the AI insights in the frontend.
 
 ### Install and configure
 
-1. Open a terminal in the project folder and go into the backend:
+1. Open a terminal and go into the backend:
 
    ```bash
    cd backend
    npm install
    ```
 
-2. Copy the example settings file:
+2. Create your settings file:
 
    ```bash
    # Mac / Linux
    cp .env.example .env
 
-   # Windows (Command Prompt or PowerShell)
+   # Windows
    copy .env.example .env
    ```
 
-3. Open `.env` in an editor and fill it in:
+3. Open `backend/.env` and fill in these values:
 
    ```env
-   # AI
    AI_MODE=live
    MISTRAL_API_KEY=
    MISTRAL_MODEL=ministral-8b-latest
    MISTRAL_TIMEOUT_MS=15000
-
-   # Server
    PORT=5000
    FRONTEND_URL=http://localhost:5173
-
-   # Smart contract (Celo Sepolia)
    CELO_RPC_URL=https://forno.celo-sepolia.celo-testnet.org
    CONTRACT_ADDRESS=0xf3bF2289BB778bE70829DC4E7C630db4B348f5DE
    WALLET_ADDRESS=paste-your-own-wallet-address-here
@@ -187,13 +180,12 @@ It has two functions, `onGoalCreated` and `onContributionRecorded`. Replace the 
 
 | Setting | What to put |
 |---|---|
-| `MISTRAL_API_KEY` | The key provided by the team. Leave no spaces around it |
-| `WALLET_ADDRESS` | Your own MetaMask address from section 2, step 3. The full address, `0x` plus 40 characters |
+| `MISTRAL_API_KEY` | The key provided by the team |
+| `WALLET_ADDRESS` | Your own MetaMask address (section 2, step 3). The full address, `0x` plus 40 characters |
 | `FRONTEND_URL` | Where the frontend runs. Keep `http://localhost:5173` unless the frontend uses another port |
-| `AI_MODE` | `live` calls Mistral. Anything else may return placeholder answers |
-| Others | Leave as shown. Each setting should appear only once in the file |
+| The rest | Leave as shown. Each setting should appear only once |
 
-The remaining API keys will be provided to you by the team.
+The remaining API keys will be provided by the team. Never commit `.env`.
 
 ### Start the backend
 
@@ -208,18 +200,17 @@ Backend running on port 5000
 Event listener on. Wallet: 0x.... Reading from block ....
 ```
 
-Check it is alive by opening **http://localhost:5000/health** in your browser.
+Open **http://localhost:5000/health** in your browser to check it is alive.
 
-> After changing `.env`, stop the server (**Ctrl+C**) and start it again. The auto-restart does not reload `.env`.
+> After changing `backend/.env`, stop the backend (**Ctrl+C**) and run `npm run dev` again.
+
+### What you can change
+
+The only file you edit is `src/handlers/eventHandlers.js`. Replace the `console.log` in `onGoalCreated` and `onContributionRecorded` with your own logic. Leave every other file as it is: they run the AI endpoint and the event listener.
 
 ### Test the AI endpoint (optional)
 
-In Postman or Apidog:
-
-1. Create a **POST** request to `http://localhost:5000/ai/analyse-savings`.
-2. Open **Body**, choose **raw**, and set the type to **JSON**.
-3. Paste the contents of `docs/sample-request.json` and click **Send**.
-4. The response contains `analysis` (summary, observations, recommendations, suggested action), `meta` (source, confidence, disclaimer) and `facts` (numbers calculated in code).
+In Postman or Apidog, send a **POST** to `http://localhost:5000/ai/analyse-savings`. Under **Body** choose **raw** and **JSON**, and paste the contents of `docs/sample-request.json`. The response contains `analysis`, `meta` and `facts`.
 
 ---
 
@@ -330,3 +321,10 @@ Reminders: the blockchain figures are **demo records**, not real money, and crea
 1. Terminal 1: `cd backend` then `npm run dev`
 2. Terminal 2: `cd frontend` then `npm run dev`
 3. Open http://localhost:5173 in Chrome, unlock MetaMask, and connect.
+
+## 9. Need more information?
+
+This guide only covers setup. For anything else, go back to the documentation repository at any time: https://github.com/ai-web3-savings-challenge/docs
+
+- Data formats, the AI request and response, and the smart contract functions: `api-reference.md`
+- Demo steps, common problems and known issues: `mentor-guide.md`
