@@ -87,12 +87,7 @@ MetaMask is the wallet that signs the blockchain transactions.
 
 > **Never share the Secret Recovery Phrase or your private key** with anyone: not in chat, not in an app, not in this repository, not with "support". Anyone who has it controls the wallet.
 
-### Step 3: Copy your wallet address
-
-1. Open MetaMask and click the **account name** at the top. This copies your address.
-2. It looks like `0x` followed by 40 letters and numbers. Keep it, because the backend needs it as `WALLET_ADDRESS` (section 3).
-
-### Step 4: Add the Celo Sepolia test network
+### Step 3: Add the Celo Sepolia test network
 
 MetaMask does not include Celo Sepolia by default. Add it with **Option A** (Chainlist, quickest) or **Option B** (manual). You can also skip this step: if MetaMask is on the wrong network, the dashboard shows a **Switch to Celo Sepolia** button that offers to add it for you.
 
@@ -121,6 +116,11 @@ If Chainlist does not show it or the button does not work, use Option B.
 | Block explorer URL | `https://celo-sepolia.blockscout.com` |
 
 3. Switch MetaMask to **Celo Sepolia Testnet**.
+
+### Step 4: Copy your wallet address
+
+1. Open MetaMask and click the **account name** at the top. This copies your address.
+2. It looks like `0x` followed by 40 letters and numbers. Keep it, because the backend needs it as `WALLET_ADDRESS` (section 3).
 
 ### Step 5: (Optional) Use only one wallet extension
 
