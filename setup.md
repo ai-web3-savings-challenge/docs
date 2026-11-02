@@ -136,7 +136,7 @@ Transactions need CELO testnet faucet to pay for gas. It has no real value.
 2. Paste your wallet address (copied in step 3) and request funds. If one faucet is busy or has a limit, try the other.
 3. Check that the balance appears in MetaMask while on the Celo Sepolia network. It can take a minute.
 
-Without testnet CELO you can still view the whole dashboard, but you cannot create goals or record contributions.
+Without CELO testnet faucet you can still view the whole dashboard, but you cannot create goals or record contributions.
 
 ---
 
