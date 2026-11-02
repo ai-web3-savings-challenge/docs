@@ -62,7 +62,7 @@ Install or confirm these before you start.
 | **A code editor** (optional) | For example VS Code, to edit `.env` files |
 | **Postman or Apidog** (optional) | To test the backend directly |
 
-The API keys for the backend (such as the Mistral key) would be provided separately by the team. Never post them in public chats or commit them to git.
+The API keys for the backend (such as the Mistral key) are provided separately by the team. Never post them in public chats or commit them to git.
 
 ---
 
@@ -128,7 +128,7 @@ If you have other wallet extensions in Chrome (for example Coinbase Wallet), the
 
 ### Step 6: Get free testnet CELO
 
-Transactions need CELO testnet faucet to pay for gas. It has no real value.
+Transactions need a little testnet CELO to pay for gas. It has no real value.
 
 1. Open one of these faucets:
    - Celo faucet: https://faucet.celo.org/celo-sepolia
@@ -136,7 +136,7 @@ Transactions need CELO testnet faucet to pay for gas. It has no real value.
 2. Paste your wallet address (copied in step 3) and request funds. If one faucet is busy or has a limit, try the other.
 3. Check that the balance appears in MetaMask while on the Celo Sepolia network. It can take a minute.
 
-Without CELO testnet faucet you can still view the whole dashboard, but you cannot create goals or record contributions.
+Without testnet CELO you can still view the whole dashboard, but you cannot create goals or record contributions.
 
 ---
 
