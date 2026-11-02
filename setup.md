@@ -93,9 +93,11 @@ If you have other wallet extensions in Chrome (for example Coinbase Wallet), the
 
 Transactions need a little testnet CELO to pay for gas. It has no real value.
 
-1. Find a current Celo Sepolia faucet from the official Celo documentation: https://docs.celo.org
-2. Paste your wallet address and request funds.
-3. Check that the balance appears in MetaMask while on the Celo Sepolia network.
+1. Open one of these faucets:
+   - Celo faucet: https://faucet.celo.org/celo-sepolia
+   - Google Cloud faucet: https://cloud.google.com/application/web3/faucet/celo/sepolia
+2. Paste your wallet address (copied in step 3) and request funds. If one faucet is busy or has a limit, try the other.
+3. Check that the balance appears in MetaMask while on the Celo Sepolia network. It can take a minute.
 
 Without testnet CELO you can still view the whole dashboard, but you cannot create goals or record contributions.
 
